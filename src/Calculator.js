@@ -6,18 +6,16 @@ function Calculator() {
   const [thirdNumber, changeThirdNumber] = useState(undefined);
 
   const handleClick = (clickedNumber) => {
-    if (
+    if (typeof firstNumber === "undefined") {
+      changeFirstNumber(clickedNumber);
+    } else if (
       typeof firstNumber !== "undefined" &&
-      typeof secondNumber !== "undefined"
+      typeof secondNumber === "undefined"
     ) {
-      changeThirdNumber(clickedNumber);
-    } else if (typeof firstNumber !== "undefined") {
       changeSecondNumber(clickedNumber);
     } else {
-      changeFirstNumber(clickedNumber);
+      changeThirdNumber(clickedNumber);
     }
-
-    changeSecondNumber(clickedNumber);
   };
 
   return (
