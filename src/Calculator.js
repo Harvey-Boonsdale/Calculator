@@ -4,103 +4,147 @@ function Calculator() {
   const [firstNumber, changeFirstNumber] = useState(undefined);
   const [secondNumber, changeSecondNumber] = useState(undefined);
   const [thirdNumber, changeThirdNumber] = useState(undefined);
+  const [operator, changeOperator] = useState(undefined);
+  const [calc, changeCalc] = useState(undefined);
 
-  const handleClick = (clickedNumber) => {
+  const handleClickNum = (clickedNumber) => {
     if (typeof firstNumber === "undefined") {
       changeFirstNumber(clickedNumber);
-    } else if (
-      typeof firstNumber !== "undefined" &&
-      typeof secondNumber === "undefined"
-    ) {
-      changeSecondNumber(clickedNumber);
     } else {
-      changeThirdNumber(clickedNumber);
+      changeSecondNumber(clickedNumber);
+    }
+  };
+
+  const handleClickOp = (clickedOp) => {
+    changeOperator(clickedOp);
+  };
+
+  const handleClickCalc = (clickedCalc) => {
+    changeCalc(clickedCalc);
+    if (operator === "+") {
+      changeThirdNumber(firstNumber + secondNumber);
+    } else if (operator === "-") {
+      changeThirdNumber(firstNumber - secondNumber);
+    } else if (operator === "*") {
+      changeThirdNumber(firstNumber * secondNumber);
+    } else if (operator === "/") {
+      changeThirdNumber(firstNumber / secondNumber);
     }
   };
 
   return (
     <div>
       <h1>
-        {firstNumber} {secondNumber} {thirdNumber}
+        {firstNumber} {operator} {secondNumber} {calc} {thirdNumber}
       </h1>
       <button
         onClick={() => {
-          handleClick(0);
+          handleClickNum(0);
         }}
       >
         0
       </button>
       <button
         onClick={() => {
-          handleClick(1);
+          handleClickNum(1);
         }}
       >
         1
       </button>
       <button
         onClick={() => {
-          handleClick(2);
+          handleClickNum(2);
         }}
       >
         2
       </button>
       <button
         onClick={() => {
-          handleClick(3);
+          handleClickNum(3);
         }}
       >
         3
       </button>
       <button
         onClick={() => {
-          handleClick(4);
+          handleClickNum(4);
         }}
       >
         4
       </button>
       <button
         onClick={() => {
-          handleClick(5);
+          handleClickNum(5);
         }}
       >
         5
       </button>
       <button
         onClick={() => {
-          handleClick(6);
+          handleClickNum(6);
         }}
       >
         6
       </button>
       <button
         onClick={() => {
-          handleClick(7);
+          handleClickNum(7);
         }}
       >
         7
       </button>
       <button
         onClick={() => {
-          handleClick(8);
+          handleClickNum(8);
         }}
       >
         8
       </button>
       <button
         onClick={() => {
-          handleClick(9);
+          handleClickNum(9);
         }}
       >
         9
       </button>
       <p>
-        <button>+</button>
-        <button>-</button>
-        <button>*</button>
-        <button>/</button>
+        <button
+          onClick={() => {
+            handleClickOp("+");
+          }}
+        >
+          +
+        </button>
+        <button
+          onClick={() => {
+            handleClickOp("-");
+          }}
+        >
+          -
+        </button>
+        <button
+          onClick={() => {
+            handleClickOp("*");
+          }}
+        >
+          *
+        </button>
+        <button
+          onClick={() => {
+            handleClickOp("/");
+          }}
+        >
+          /
+        </button>
       </p>
       <p>
-        <button>=</button>
+        <button
+          onClick={() => {
+            handleClickCalc("=");
+          }}
+        >
+          =
+        </button>
       </p>
     </div>
   );
